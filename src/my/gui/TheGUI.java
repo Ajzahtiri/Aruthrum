@@ -5,6 +5,7 @@ public class TheGUI extends javax.swing.JFrame
     public TheGUI() 
     {
         initComponents();
+        enterField.requestFocus();
     }
     
     @SuppressWarnings("unchecked")
@@ -89,6 +90,12 @@ public class TheGUI extends javax.swing.JFrame
             }
         });
 
+        enterField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enterFieldActionPerformed(evt);
+            }
+        });
+
         logArea.setColumns(20);
         logArea.setRows(5);
         jScrollPane2.setViewportView(logArea);
@@ -149,10 +156,17 @@ public class TheGUI extends javax.swing.JFrame
 
     private void goButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goButtonActionPerformed
         logThis(enterField.getText());
+        enterField.setText("");
+        enterField.requestFocus();
     }//GEN-LAST:event_goButtonActionPerformed
 
+    private void enterFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterFieldActionPerformed
+        logThis(enterField.getText());
+        enterField.setText("");
+        enterField.requestFocus();
+    }//GEN-LAST:event_enterFieldActionPerformed
+
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
@@ -174,13 +188,11 @@ public class TheGUI extends javax.swing.JFrame
             java.util.logging.Logger.getLogger(TheGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new TheGUI().setVisible(true);
             }
-        });
+        });       
     }
     
     public void logThis(String s)
